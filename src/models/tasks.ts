@@ -8,7 +8,7 @@ if (mongoose.connection.readyState === 0) {
 
 mongoose.Promise = global.Promise;
 
-const tasksSckema = new Schema(
+const tasksSchema = new Schema(
 	{
 		id: String,
 		title: String,
@@ -22,6 +22,6 @@ const tasksSckema = new Schema(
 	}
 );
 
-const Tasks = mongoose.models.Tasks || mongoose.model("Tasks", tasksSckema);
+const Tasks = mongoose.models.Tasks || mongoose.model("Tasks", tasksSchema);
 
 export default Tasks;
