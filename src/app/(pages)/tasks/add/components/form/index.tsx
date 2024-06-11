@@ -1,4 +1,4 @@
-"use client";
+"use server";
 import {
 	Box,
 	Button,
@@ -7,12 +7,10 @@ import {
 	TextField,
 	Typography,
 } from "@mui/material";
-import { useFormState } from "react-dom";
-import { submit } from "./submit";
+import { handleSubmit } from "./handleSubmit";
+import { ButtonForm } from "./buttonForm";
 
-export const FormAddTask = () => {
-	const initialState: { message: string[] } = { message: [] };
-	const [state, formAction] = useFormState(submit, initialState);
+export const FormAddTask = async () => {
 	return (
 		<Stack
 			width={{ xs: "100%", sm: "80%", md: "60%", lg: "55%" }}
@@ -30,61 +28,8 @@ export const FormAddTask = () => {
 						Create tasks
 					</Typography>
 				</Box>
-				<form action={formAction}>
-					<Box display={"flex"} flexDirection={"column"} gap={2}>
-						<TextField
-							name="title"
-							label="Task title"
-							fullWidth
-							size="small"
-							InputLabelProps={{ shrink: true }}
-						/>
-						<TextField
-							name="description"
-							label="Task description"
-							fullWidth
-							size="small"
-							multiline
-							rows={8}
-							InputLabelProps={{ shrink: true }}
-						/>
-						<TextField
-							name="date"
-							label="Date"
-							fullWidth
-							size="small"
-							type="date"
-							InputLabelProps={{ shrink: true }}
-						/>
-						<TextField
-							name="time"
-							label="Time"
-							fullWidth
-							size="small"
-							type="number"
-							InputLabelProps={{ shrink: true }}
-						/>
-						{state &&
-							state?.message.map((message, index) => (
-								<Typography
-									variant={"body1"}
-									component={"span"}
-									color={"error"}
-									key={index}
-								>
-									{message}
-								</Typography>
-							))}
-						<Button
-							type="submit"
-							variant="contained"
-							fullWidth
-							color={"primary"}
-							sx={{ marginTop: 2 }}
-						>
-							Add task
-						</Button>
-					</Box>
+				<form action={handleSubmit}>
+					<ButtonForm />
 				</form>
 			</Paper>
 		</Stack>

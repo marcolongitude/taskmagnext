@@ -1,16 +1,10 @@
-import {
-	Box,
-	Card,
-	CardContent,
-	Divider,
-	Stack,
-	Typography,
-} from "@mui/material";
+import { Box, Divider, Stack, Typography } from "@mui/material";
 import { getTasks } from "./services";
 import { ITasks } from "@/app/api/tasks/route";
 
 export default async function TasksList() {
-	const tasks: ITasks[] = await getTasks();
+	const tasks: ITasks[] | undefined = await getTasks();
+
 	return (
 		<Stack gap={2}>
 			{tasks &&

@@ -4,7 +4,7 @@ import { NextAuthOptions } from "next-auth";
 
 const nextAuthOptions = {
 	pages: {
-		signIn: "/home",
+		signIn: "/tasks/list",
 	},
 	providers: [
 		Credentials({

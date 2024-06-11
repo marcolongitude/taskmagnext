@@ -23,19 +23,19 @@ export async function POST(request: Request) {
 
 		await Tasks.create(task);
 
-		return NextResponse.json({ message: "Tasks created" }, { status: 201 });
+		return NextResponse.json({ message: "Tasks created", status: 200 });
 	} catch (error) {
 		console.error(error);
-		return NextResponse.json({ message: "Error", error }, { status: 500 });
+		return NextResponse.json({ message: "Error", error, status: 500 });
 	}
 }
 
 export async function GET() {
 	try {
 		const tasks: ITasks[] = await Tasks.find();
-		return NextResponse.json({ tasks }, { status: 200 });
+		return NextResponse.json({ tasks, status: 200 });
 	} catch (error) {
 		console.error(error);
-		return NextResponse.json({ message: "Error", error }, { status: 500 });
+		return NextResponse.json({ message: "Error", error, status: 500 });
 	}
 }
